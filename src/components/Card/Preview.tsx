@@ -1,7 +1,6 @@
 import React from 'react';
 
 export function Preview({ previewSrc }: { previewSrc: string }) {
-  // previewSrc = previewSrc.endsWith('.jpg')
   return (
     <div className="preview">
       <img

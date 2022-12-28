@@ -5,3 +5,5 @@ export * from './SaveIcon';
 export * from './ShareIcon';
 export * from './CommentsIcon';
 export * from './DefaultIcon';
+export * from './IconUp';
+export * from './IconDown';

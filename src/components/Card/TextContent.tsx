@@ -28,7 +28,7 @@ export function TextContent({
         </span>
       </div>
       <h2 className="title">
-        <a className="postLink" href="#post-url">
+        <a className="postLink" href="#post-url" onClick={() => console.log('click')}>
           {title}
         </a>
       </h2>
