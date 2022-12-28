@@ -18,3 +18,11 @@ export enum EIcons {
   save = 'save',
   comments = 'comments',
 }
+
+export interface PostData {
+  author: string;
+  title: string;
+  previewImage: string;
+  id: string;
+  avatar: string;
+}
