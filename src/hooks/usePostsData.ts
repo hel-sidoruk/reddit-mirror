@@ -9,6 +9,7 @@ interface PostApi {
   thumbnail: string;
   id: string;
   sr_detail: { header_img: null | string };
+  score: number;
 }
 
 export function usePostsData() {
@@ -26,13 +27,14 @@ export function usePostsData() {
         .then(({ data }) => {
           const posts = data.data.children;
           const postData = posts.map(({ data }: { data: PostApi }) => {
-            const { author, title, thumbnail, id, sr_detail } = data;
+            const { author, title, thumbnail, id, sr_detail, score } = data;
             return {
               author,
               title,
               id,
               previewImage: thumbnail !== ('self' || 'default' || 'nsfw') ? thumbnail : '',
               avatar: sr_detail.header_img ? sr_detail.header_img : '',
+              score,
             };
           });
           setData(postData);

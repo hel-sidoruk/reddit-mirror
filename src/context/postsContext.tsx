@@ -7,6 +7,7 @@ interface PostsContextData {
   previewImage: string;
   id: string;
   avatar: string;
+  score: number;
 }
 export const postsContext = createContext<PostsContextData[]>([]);
 

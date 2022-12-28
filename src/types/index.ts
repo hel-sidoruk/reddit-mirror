@@ -25,4 +25,5 @@ export interface PostData {
   previewImage: string;
   id: string;
   avatar: string;
+  score: number;
 }
