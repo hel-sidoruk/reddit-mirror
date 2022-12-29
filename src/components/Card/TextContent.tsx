@@ -1,15 +1,10 @@
 import React from 'react';
+import { PostData } from '../../types';
 import { DefaultIcon } from '../Icons';
+import { CardTitle } from './CardTitle';
 
-export function TextContent({
-  author,
-  title,
-  avatar,
-}: {
-  author: string;
-  title: string;
-  avatar: string;
-}) {
+export function TextContent({ post }: { post: PostData }) {
+  const { avatar, title, author, id, subreddit, selftext } = post;
   return (
     <div className="textContent">
       <div className="metaData">
@@ -27,11 +22,7 @@ export function TextContent({
           <span className="publishedLabel">опубликовано </span>4 часа назад
         </span>
       </div>
-      <h2 className="title">
-        <a className="postLink" href="#post-url" onClick={() => console.log('click')}>
-          {title}
-        </a>
-      </h2>
+      <CardTitle title={title} id={id} descr={selftext} subreddit={subreddit} />
     </div>
   );
 }

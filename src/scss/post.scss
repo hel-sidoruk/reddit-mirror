@@ -1,0 +1,40 @@
+.modal {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.15);
+  border-radius: 7px;
+  min-width: 200px;
+  min-height: 160px;
+  max-width: 80%;
+  padding: 24px;
+  margin-bottom: 25px;
+  &__content {
+    overflow-y: auto;
+  }
+  
+  &__close {
+    align-self: flex-end;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    color: #000;
+    cursor: pointer;
+    svg {
+      transition: all .3s ease-in-out; 
+    }
+    &:hover {
+      svg {
+        fill: var(--orange);
+      }
+    }
+  }
+  &__text {
+    white-space: break-spaces;
+  }
+}

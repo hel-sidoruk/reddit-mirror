@@ -10,6 +10,8 @@ interface PostApi {
   id: string;
   sr_detail: { header_img: null | string };
   score: number;
+  subreddit: string;
+  selftext: string;
 }
 
 export function usePostsData() {
@@ -27,7 +29,7 @@ export function usePostsData() {
         .then(({ data }) => {
           const posts = data.data.children;
           const postData = posts.map(({ data }: { data: PostApi }) => {
-            const { author, title, thumbnail, id, sr_detail, score } = data;
+            const { author, title, thumbnail, id, sr_detail, score, subreddit, selftext } = data;
             return {
               author,
               title,
@@ -35,6 +37,8 @@ export function usePostsData() {
               previewImage: thumbnail !== ('self' || 'default' || 'nsfw') ? thumbnail : '',
               avatar: sr_detail.header_img ? sr_detail.header_img : '',
               score,
+              subreddit,
+              selftext,
             };
           });
           setData(postData);

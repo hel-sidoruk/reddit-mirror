@@ -1,15 +1,8 @@
 import React, { createContext } from 'react';
 import { usePostsData } from '../hooks/usePostsData';
+import { PostData } from '../types';
 
-interface PostsContextData {
-  author: string;
-  title: string;
-  previewImage: string;
-  id: string;
-  avatar: string;
-  score: number;
-}
-export const postsContext = createContext<PostsContextData[]>([]);
+export const postsContext = createContext<PostData[]>([]);
 
 export function PostsContextProvider({ children }: { children: React.ReactNode }) {
   const [data] = usePostsData();

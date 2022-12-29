@@ -26,4 +26,6 @@ export interface PostData {
   id: string;
   avatar: string;
   score: number;
+  subreddit: string;
+  selftext: string;
 }

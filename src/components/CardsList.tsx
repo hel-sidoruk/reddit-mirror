@@ -11,7 +11,7 @@ export function CardsList() {
   return token ? (
     <ul className="cardsList">
       {posts.length
-        ? posts.map(({ id, ...post }) => <Card key={id} post={post} />)
+        ? posts.map((post) => <Card key={post.id} post={post} />)
         : Array(10)
             .fill(0)
             .map((_, i) => <SkeletonPost key={i} />)}

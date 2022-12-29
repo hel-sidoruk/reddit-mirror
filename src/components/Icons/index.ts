@@ -7,3 +7,4 @@ export * from './CommentsIcon';
 export * from './DefaultIcon';
 export * from './IconUp';
 export * from './IconDown';
+export * from './CloseIcon';

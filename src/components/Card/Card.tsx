@@ -5,14 +5,13 @@ import { Menu } from './Menu';
 import { Preview } from './Preview';
 import { TextContent } from './TextContent';
 
-export function Card({ post }: { post: Omit<PostData, 'id'> }) {
-  const { avatar, author, title, previewImage, score } = post;
+export function Card({ post }: { post: PostData }) {
   return (
     <li className="card">
-      <TextContent avatar={avatar} author={author} title={title} />
-      <Preview previewSrc={previewImage} />
+      <TextContent post={post} />
+      <Preview previewSrc={post.previewImage} />
       <Menu />
-      <Controls score={score} />
+      <Controls score={post.score} />
     </li>
   );
 }

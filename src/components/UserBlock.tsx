@@ -24,7 +24,7 @@ export function UserBlock({ avatarSrc, username }: UserBlockProps) {
       </div>
       <div className="username">
         <Text size={20} color={username ? Colors.black : Colors.grey99}>
-          {username || 'Аноним'}
+          {username || 'Anonimous'}
         </Text>
       </div>
     </div>
