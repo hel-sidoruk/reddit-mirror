@@ -1,7 +1,7 @@
 import React from 'react';
 import { Colors, EIcons } from '../../types';
-import { Icon } from '../Icon';
-import { Text } from '../Text';
+import { Icon } from '../UI/Icon';
+import { Text } from '../UI/Text';
 
 interface MenuItemsListProps {
   postId: string;

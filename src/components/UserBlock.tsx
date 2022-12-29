@@ -1,7 +1,7 @@
 import React from 'react';
 import { Colors } from '../types';
 import { DefaultIcon } from './Icons';
-import { Text } from './Text';
+import { Text } from './UI/Text';
 
 interface UserBlockProps {
   avatarSrc?: string;

@@ -26,14 +26,12 @@
     color: var(--black);
     padding: 7px 0;
   }
-}
-
-@media all and (min-width: 1540px) {
   .karmaCounter > button.up:hover > svg > path {
     fill: var(--green);
   }
-
+  
   .karmaCounter > button.down:hover > svg > path {
     fill: var(--orange);
   }
 }
+

@@ -12,6 +12,7 @@ interface PostApi {
   score: number;
   subreddit: string;
   selftext: string;
+  num_comments: number;
 }
 
 export function usePostsData() {
@@ -29,16 +30,17 @@ export function usePostsData() {
         .then(({ data }) => {
           const posts = data.data.children;
           const postData = posts.map(({ data }: { data: PostApi }) => {
-            const { author, title, thumbnail, id, sr_detail, score, subreddit, selftext } = data;
             return {
-              author,
-              title,
-              id,
-              previewImage: thumbnail !== ('self' || 'default' || 'nsfw') ? thumbnail : '',
-              avatar: sr_detail.header_img ? sr_detail.header_img : '',
-              score,
-              subreddit,
-              selftext,
+              author: data.author,
+              title: data.title,
+              id: data.id,
+              previewImage:
+                data.thumbnail !== ('self' || 'default' || 'nsfw') ? data.thumbnail : '',
+              avatar: data.sr_detail.header_img ? data.sr_detail.header_img : '',
+              score: data.score,
+              subreddit: data.subreddit,
+              selftext: data.selftext,
+              num_comments: data.num_comments,
             };
           });
           setData(postData);

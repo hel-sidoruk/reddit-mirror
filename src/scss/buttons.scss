@@ -1,0 +1,21 @@
+.icon-btn {
+  display: flex;
+  align-items: center;
+  svg {
+    width: 14px;
+    margin-right: 5px;
+    transition: all .3s ease-in-out;
+  }
+  span {
+    white-space: nowrap;
+    transition: all .3s ease-in-out;
+  }
+  &:hover {
+    span {
+      color: var(--orange);
+    }
+    svg {
+      fill: var(--orange);
+    }
+  }
+}

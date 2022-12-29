@@ -2,7 +2,7 @@ import React from 'react';
 import { Colors } from '../../types';
 import { Dropdown } from '../Dropdown';
 import { MenuIcon } from '../Icons';
-import { Text } from '../Text';
+import { Text } from '../UI/Text';
 import { MenuItemsList } from './MenuItemsList';
 
 export function Menu() {

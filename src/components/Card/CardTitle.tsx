@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { Post } from '../Post';
 import axios from 'axios';
+import { IComment } from '../../types';
 
 interface CardTitleProps {
   title: string;
   id: string;
   subreddit: string;
   descr: string;
+  num: number;
 }
 
-export function CardTitle({ title, id, subreddit, descr }: CardTitleProps) {
+interface CommentsApi {
+  data: IComment;
+}
+
+export function CardTitle({ title, id, subreddit, descr, num }: CardTitleProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
+  const [comments, setComments] = useState<CommentsApi[]>([]);
   return (
     <>
       <h2 className="title">
@@ -19,12 +26,9 @@ export function CardTitle({ title, id, subreddit, descr }: CardTitleProps) {
           onClick={(e) => {
             e.stopPropagation();
             axios.get(`http://api.reddit.com/r/${subreddit}/comments/${id}`).then(({ data }) => {
-              const postData = data[0].data.children[0].data;
-              const comments = data[1];
+              const comments = data[1].data.children;
+              setComments(comments);
             });
-            // axios.get(`http://api.reddit.com/r/best`).then((res) => {
-            //   console.log(res);
-            // });
             setIsModalOpened(true);
           }}
         >
@@ -32,7 +36,13 @@ export function CardTitle({ title, id, subreddit, descr }: CardTitleProps) {
         </button>
       </h2>
       {isModalOpened && (
-        <Post descr={descr} title={title} onClose={() => setIsModalOpened(false)} />
+        <Post
+          comments={comments}
+          descr={descr}
+          num={num}
+          title={title}
+          onClose={() => setIsModalOpened(false)}
+        />
       )}
     </>
   );

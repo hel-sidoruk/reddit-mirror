@@ -1,38 +1,51 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { createPortal } from 'react-dom';
+import { Colors, EIcons, IComment } from '../types';
 import { CommentForm } from './CommentForm';
-import { CloseIcon } from './Icons';
-import { Text } from './Text';
+import { Text } from './UI/Text';
+import { IconButton } from './UI/IconButton';
+import { CommentsBlock } from './CommentsBlock';
 
 interface PostProps {
   onClose?: () => void;
   title: string;
   descr: string;
+  num: number;
+  comments: { data: IComment }[];
 }
 
-export const Post = ({ onClose, title, descr }: PostProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (e.target instanceof Node && !ref.current?.contains(e.target)) onClose?.();
-    }
-    document.body.addEventListener('click', handleClick);
-    return () => {
-      document.body.removeEventListener('click', handleClick);
-    };
-  }, [onClose]);
+export const Post = ({ onClose, title, descr, num, comments }: PostProps) => {
   return createPortal(
-    <div className="modal" ref={ref}>
-      <div className="modal__close" onClick={onClose}>
-        <CloseIcon />
+    <div className="modal" onClick={onClose}>
+      <div className="modal__header">
+        <Text As="p" size={20} color={Colors.white}>
+          {title}
+        </Text>
+        <IconButton color={Colors.white} icon={EIcons.close}>
+          Close
+        </IconButton>
       </div>
-      <Text As="h2" size={28}>
-        {title}
-      </Text>
       <div className="modal__content">
-        <p className="modal__text">{descr}</p>
+        <div className="post" onClick={(e) => e.stopPropagation()}>
+          <div className="post__content">
+            <Text As="h1" size={28}>
+              {title}
+            </Text>
+            <Text As="p" size={20}>
+              {descr}
+            </Text>
+            <div className="post__btns">
+              <IconButton icon={EIcons.comments}>{num} comments</IconButton>
+              <IconButton icon={EIcons.share}>Share</IconButton>
+              <IconButton icon={EIcons.block}>Hide</IconButton>
+              <IconButton icon={EIcons.save}>Save</IconButton>
+              <IconButton icon={EIcons.warning}>Report</IconButton>
+            </div>
+            <CommentForm />
+            <CommentsBlock comments={comments} />
+          </div>
+        </div>
       </div>
-      <CommentForm />
     </div>,
     document.getElementById('modal-root') as HTMLElement
   );

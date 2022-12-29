@@ -1,6 +1,6 @@
 import React from 'react';
 import { EIcons } from '../../types';
-import { Icon } from '../Icon';
+import { Icon } from '../UI/Icon';
 
 export function CommentButton() {
   return (

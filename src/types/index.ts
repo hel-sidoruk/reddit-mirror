@@ -17,6 +17,7 @@ export enum EIcons {
   share = 'share',
   save = 'save',
   comments = 'comments',
+  close = 'close',
 }
 
 export interface PostData {
@@ -28,4 +29,11 @@ export interface PostData {
   score: number;
   subreddit: string;
   selftext: string;
+  num_comments: number;
+}
+
+export interface IComment {
+  body: string;
+  author: string;
+  replies: { data: { children: { data: IComment }[] } } | '';
 }

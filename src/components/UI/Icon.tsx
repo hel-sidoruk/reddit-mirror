@@ -1,6 +1,6 @@
 import React from 'react';
-import { EIcons } from '../types';
-import { BlockIcon, CommentsIcon, SaveIcon, ShareIcon, WarningIcon } from './Icons';
+import { EIcons } from '../../types';
+import { BlockIcon, CloseIcon, CommentsIcon, SaveIcon, ShareIcon, WarningIcon } from '../Icons';
 
 interface IconProps {
   name: EIcons;
@@ -13,6 +13,7 @@ const icons = {
   share: <ShareIcon />,
   save: <SaveIcon />,
   comments: <CommentsIcon />,
+  close: <CloseIcon />,
 };
 
 export function Icon({ name, fill }: IconProps) {

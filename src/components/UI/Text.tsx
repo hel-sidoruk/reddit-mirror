@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Colors } from '../types';
+import { Colors } from '../../types';
 
 type TextSizes = 28 | 20 | 16 | 14 | 12 | 10;
 
