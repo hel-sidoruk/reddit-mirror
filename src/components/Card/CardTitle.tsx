@@ -9,13 +9,14 @@ interface CardTitleProps {
   subreddit: string;
   descr: string;
   num: number;
+  url: string;
 }
 
 interface CommentsApi {
   data: IComment;
 }
 
-export function CardTitle({ title, id, subreddit, descr, num }: CardTitleProps) {
+export function CardTitle({ url, title, id, subreddit, descr, num }: CardTitleProps) {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [comments, setComments] = useState<CommentsApi[]>([]);
   return (
@@ -37,6 +38,7 @@ export function CardTitle({ title, id, subreddit, descr, num }: CardTitleProps) 
       </h2>
       {isModalOpened && (
         <Post
+          url={url}
           comments={comments}
           descr={descr}
           num={num}

@@ -12,9 +12,10 @@ interface PostProps {
   descr: string;
   num: number;
   comments: { data: IComment }[];
+  url: string;
 }
 
-export const Post = ({ onClose, title, descr, num, comments }: PostProps) => {
+export const Post = ({ url, onClose, title, descr, num, comments }: PostProps) => {
   return createPortal(
     <div className="modal" onClick={onClose}>
       <div className="modal__header">
@@ -34,6 +35,7 @@ export const Post = ({ onClose, title, descr, num, comments }: PostProps) => {
             <Text As="p" size={20}>
               {descr}
             </Text>
+            {url && <img className="post__image" src={url} alt="Post image" />}
             <div className="post__btns">
               <IconButton icon={EIcons.comments}>{num} comments</IconButton>
               <IconButton icon={EIcons.share}>Share</IconButton>

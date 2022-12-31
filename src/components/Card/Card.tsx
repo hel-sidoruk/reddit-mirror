@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostData } from '../../types';
+import { PostData } from '../../types/posts';
 import { Controls } from './Controls';
 import { Menu } from './Menu';
 import { Preview } from './Preview';
@@ -9,7 +9,7 @@ export function Card({ post }: { post: PostData }) {
   return (
     <li className="card">
       <TextContent post={post} />
-      <Preview previewSrc={post.previewImage} />
+      <Preview previewSrc={post.url} />
       <Menu />
       <Controls score={post.score} />
     </li>

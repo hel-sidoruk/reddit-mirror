@@ -1,0 +1,18 @@
+.error-message {
+  position: fixed;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url('https://i2-prod.dailystar.co.uk/incoming/article20094390.ece/ALTERNATES/s615/0_Screen-Shot-2019-09-18-at-224625.png') no-repeat left;
+  &__title {
+    text-align: center;
+    background-color: rgba(#fff, 0.7);
+    box-shadow: 0px 0px 20px rgba(#cc6633, 0.5);
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 36px;
+    line-height: 44px;
+    white-space: break-spaces;
+  }
+}
