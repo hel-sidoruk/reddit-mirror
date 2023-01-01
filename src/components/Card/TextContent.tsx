@@ -4,25 +4,22 @@ import { DefaultIcon } from '../Icons';
 import { CardTitle } from './CardTitle';
 
 export function TextContent({ post }: { post: PostData }) {
-  const { avatar, title, author, id, selftext, num_comments, url } = post;
   return (
     <div className="textContent">
       <div className="metaData">
         <div className="userLink">
-          {avatar ? (
-            <img src={avatar} className="avatar" alt="avatar" />
+          {post.avatar ? (
+            <img src={post.avatar} className="avatar" alt="avatar" />
           ) : (
             <DefaultIcon fill="#CC6633" className="avatar" />
           )}
           <a href="#user-url" className="username">
-            {author}
+            {post.author}
           </a>
         </div>
-        <span className="createdAt">
-          <span className="publishedLabel">опубликовано </span>4 часа назад
-        </span>
+        <span className="createdAt">{post.created}</span>
       </div>
-      <CardTitle title={title} id={id} url={url} descr={selftext} num={num_comments} />
+      <CardTitle post={post} />
     </div>
   );
 }

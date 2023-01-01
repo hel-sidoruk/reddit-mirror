@@ -2,20 +2,13 @@ import React, { useState } from 'react';
 import { Post } from '../Post';
 import axios from 'axios';
 import { IComment } from '../../types';
-
-interface CardTitleProps {
-  title: string;
-  id: string;
-  descr: string;
-  num: number;
-  url: string;
-}
+import { PostData } from '../../types/posts';
 
 interface CommentsApi {
   data: IComment;
 }
 
-export function CardTitle({ url, title, id, descr, num }: CardTitleProps) {
+export function CardTitle({ post }: { post: PostData }) {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [comments, setComments] = useState<CommentsApi[]>([]);
   return (
@@ -25,25 +18,18 @@ export function CardTitle({ url, title, id, descr, num }: CardTitleProps) {
           className="postLink"
           onClick={(e) => {
             e.stopPropagation();
-            axios.get(`http://api.reddit.com/comments/${id}`).then(({ data }) => {
+            axios.get(`http://api.reddit.com/comments/${post.id}`).then(({ data }) => {
               const comments = data[1].data.children;
               setComments(comments);
             });
             setIsModalOpened(true);
           }}
         >
-          {title}
+          {post.title}
         </button>
       </h2>
       {isModalOpened && (
-        <Post
-          url={url}
-          comments={comments}
-          descr={descr}
-          num={num}
-          title={title}
-          onClose={() => setIsModalOpened(false)}
-        />
+        <Post post={post} comments={comments} onClose={() => setIsModalOpened(false)} />
       )}
     </>
   );

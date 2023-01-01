@@ -5,22 +5,21 @@ import { CommentForm } from './CommentForm';
 import { Text } from './UI/Text';
 import { IconButton } from './UI/IconButton';
 import { CommentsBlock } from './CommentsBlock';
+import { PostData } from '../types/posts';
+import { DefaultIcon } from './Icons';
 
 interface PostProps {
   onClose?: () => void;
-  title: string;
-  descr: string;
-  num: number;
+  post: PostData;
   comments: { data: IComment }[];
-  url: string;
 }
 
-export const Post = ({ url, onClose, title, descr, num, comments }: PostProps) => {
+export const Post = ({ onClose, post, comments }: PostProps) => {
   return createPortal(
     <div className="modal" onClick={onClose}>
       <div className="modal__header">
         <Text As="p" size={20} color={Colors.white}>
-          {title}
+          {post.title}
         </Text>
         <IconButton color={Colors.white} icon={EIcons.close}>
           Close
@@ -29,15 +28,28 @@ export const Post = ({ url, onClose, title, descr, num, comments }: PostProps) =
       <div className="modal__content">
         <div className="post" onClick={(e) => e.stopPropagation()}>
           <div className="post__content">
+            <div className="metaData">
+              <div className="userLink">
+                {post.avatar ? (
+                  <img src={post.avatar} className="avatar" alt="avatar" />
+                ) : (
+                  <DefaultIcon fill="#CC6633" className="avatar" />
+                )}
+                <a href="#user-url" className="username">
+                  {post.author}
+                </a>
+              </div>
+              <span className="createdAt">{post.created}</span>
+            </div>
             <Text As="h1" size={28}>
-              {title}
+              {post.title}
             </Text>
             <Text As="p" size={20}>
-              {descr}
+              {post.selftext}
             </Text>
-            {url && <img className="post__image" src={url} alt="Post image" />}
+            {post.url && <img className="post__image" src={post.url} alt="Post image" />}
             <div className="post__btns">
-              <IconButton icon={EIcons.comments}>{num} comments</IconButton>
+              <IconButton icon={EIcons.comments}>{post.num_comments} comments</IconButton>
               <IconButton icon={EIcons.share}>Share</IconButton>
               <IconButton icon={EIcons.block}>Hide</IconButton>
               <IconButton icon={EIcons.save}>Save</IconButton>

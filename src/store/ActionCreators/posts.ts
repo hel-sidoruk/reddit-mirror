@@ -2,6 +2,8 @@ import { Dispatch } from 'redux';
 import axios from 'axios';
 import { PostsAction, PostsActionTypes } from '../../types/posts';
 import { isImage } from '../../utils/isImage';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 interface PostApi {
   author: string;
@@ -12,7 +14,9 @@ interface PostApi {
   selftext: string;
   num_comments: number;
   url: string;
+  created: number;
 }
+dayjs.extend(relativeTime);
 
 export const fetchPosts = (token: string, option = 'best') => {
   return async (dispatch: Dispatch<PostsAction>) => {
@@ -34,6 +38,7 @@ export const fetchPosts = (token: string, option = 'best') => {
           selftext: data.selftext,
           num_comments: data.num_comments,
           url: isImage(data.url) ? data.url : '',
+          created: `Posted ${dayjs(data.created * 1000).fromNow()}`,
         }));
         dispatch({
           type: PostsActionTypes.FETCH_POSTS_SUCCESS,

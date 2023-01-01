@@ -7,6 +7,7 @@ export interface PostData {
   selftext: string;
   num_comments: number;
   url: string;
+  created: string;
 }
 
 export interface PostsState {
