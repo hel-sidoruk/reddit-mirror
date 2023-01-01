@@ -17,4 +17,16 @@ export enum EIcons {
   share = 'share',
   save = 'save',
   comments = 'comments',
+  close = 'close',
+  new = 'new',
+  best = 'best',
+  top = 'top',
+  long = 'long',
+  hot = 'hot',
+}
+
+export interface IComment {
+  body: string;
+  author: string;
+  replies: { data: { children: { data: IComment }[] } } | '';
 }

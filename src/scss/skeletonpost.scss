@@ -1,0 +1,62 @@
+.skeleton {
+  pointer-events: none;
+  background-color: var(--greyEC);
+  animation: skeleton 1s ease-in-out infinite alternate;
+  &__preview {
+    flex-basis: 190px;
+    width: 190px;
+    height: 105px;
+    background-color: var(--greyC4);
+  }
+  &__title {
+    background-color: var(--greyC4);
+    min-height: 18px;
+    width: 70%;
+    margin-bottom: 12px;
+  }
+  &__username {
+    position: relative;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--greyC4);
+    }
+    &::after {
+      width: 20px;
+      height: 20px;
+      left: 0;
+      border-radius: 100%;
+    }
+    &::before {
+      left: 30px;
+      width: 130px;
+      height: 10px;
+    }
+  }
+  &__created {
+    background-color: var(--greyC4);
+    height: 9px;
+    width: 180px;
+    margin-right: 15px;
+  }
+  .karmaValue {
+    background-color: var(--greyC4);
+    width: 20px;
+    height: 8px;
+    padding: 0;
+    margin: 7px 0;
+  }
+}
+
+@keyframes skeleton {
+  from {
+    opacity: 0.5;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
