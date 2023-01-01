@@ -8,13 +8,14 @@ interface IconButtonProps {
   color?: Colors;
   handleClick?: () => void;
   children: React.ReactNode;
+  size?: 28 | 20 | 16 | 14 | 12 | 10;
 }
 
-export const IconButton = ({ icon, color, children, handleClick }: IconButtonProps) => {
+export const IconButton = ({ icon, color, children, handleClick, size }: IconButtonProps) => {
   return (
     <button className="icon-btn" onClick={handleClick}>
       <Icon name={icon} />
-      <Text size={14} color={color || Colors.grey99}>
+      <Text size={size || 14} color={color || Colors.grey99}>
         {children}
       </Text>
     </button>

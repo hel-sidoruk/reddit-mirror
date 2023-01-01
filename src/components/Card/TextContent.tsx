@@ -4,7 +4,7 @@ import { DefaultIcon } from '../Icons';
 import { CardTitle } from './CardTitle';
 
 export function TextContent({ post }: { post: PostData }) {
-  const { avatar, title, author, id, subreddit, selftext, num_comments, url } = post;
+  const { avatar, title, author, id, selftext, num_comments, url } = post;
   return (
     <div className="textContent">
       <div className="metaData">
@@ -22,14 +22,7 @@ export function TextContent({ post }: { post: PostData }) {
           <span className="publishedLabel">опубликовано </span>4 часа назад
         </span>
       </div>
-      <CardTitle
-        title={title}
-        id={id}
-        url={url}
-        descr={selftext}
-        num={num_comments}
-        subreddit={subreddit}
-      />
+      <CardTitle title={title} id={id} url={url} descr={selftext} num={num_comments} />
     </div>
   );
 }

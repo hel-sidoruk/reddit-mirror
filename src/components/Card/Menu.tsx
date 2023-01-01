@@ -5,7 +5,7 @@ import { MenuIcon } from '../Icons';
 import { Text } from '../UI/Text';
 import { MenuItemsList } from './MenuItemsList';
 
-export function Menu() {
+export function Menu({ postId }: { postId: string }) {
   return (
     <div className="menu">
       <Dropdown
@@ -16,7 +16,7 @@ export function Menu() {
         }
       >
         <ul className="dropdown">
-          <MenuItemsList postId="1" />
+          <MenuItemsList postId={postId} />
           <button className="closeButton">
             <Text size={14} mobileSize={12} color={Colors.grey66}>
               Закрыть

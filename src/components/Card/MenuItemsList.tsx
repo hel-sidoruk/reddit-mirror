@@ -1,7 +1,6 @@
 import React from 'react';
-import { Colors, EIcons } from '../../types';
-import { Icon } from '../UI/Icon';
-import { Text } from '../UI/Text';
+import { EIcons } from '../../types';
+import { IconButton } from '../UI/IconButton';
 
 interface MenuItemsListProps {
   postId: string;
@@ -11,34 +10,29 @@ export function MenuItemsList({ postId }: MenuItemsListProps) {
   return (
     <ul className="menuItemsList">
       <li className="menuItem hideMobile" onClick={() => console.log(postId)}>
-        <Icon name={EIcons.comments} />
-        <Text size={12} color={Colors.grey99}>
-          Комментарии
-        </Text>
+        <IconButton icon={EIcons.comments} size={12}>
+          Comments
+        </IconButton>
       </li>
       <li className="menuItem hideMobile">
-        <Icon name={EIcons.share} />
-        <Text size={12} color={Colors.grey99}>
-          Поделиться
-        </Text>
+        <IconButton icon={EIcons.share} size={12}>
+          Share
+        </IconButton>
       </li>
       <li className="menuItem">
-        <Icon name={EIcons.block} />
-        <Text size={12} color={Colors.grey99}>
-          Скрыть
-        </Text>
+        <IconButton icon={EIcons.block} size={12}>
+          Hide
+        </IconButton>
       </li>
       <li className="menuItem hideMobile">
-        <Icon name={EIcons.save} />
-        <Text size={12} color={Colors.grey99}>
-          Сохранить
-        </Text>
+        <IconButton icon={EIcons.save} size={12}>
+          Save
+        </IconButton>
       </li>
       <li className="menuItem">
-        <Icon name={EIcons.warning} />
-        <Text size={12} color={Colors.grey99}>
-          Пожаловаться
-        </Text>
+        <IconButton icon={EIcons.warning} size={12}>
+          Report
+        </IconButton>
       </li>
     </ul>
   );

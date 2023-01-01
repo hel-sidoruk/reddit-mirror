@@ -1,11 +1,9 @@
 export interface PostData {
   author: string;
   title: string;
-  previewImage: string;
   id: string;
   avatar: string;
   score: number;
-  subreddit: string;
   selftext: string;
   num_comments: number;
   url: string;

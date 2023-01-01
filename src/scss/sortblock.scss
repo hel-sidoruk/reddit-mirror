@@ -13,3 +13,13 @@
     border-radius: 0;
   }
 }
+
+.sort-dropdown {
+  padding: 8px 24px;
+  min-width: 170px;
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}

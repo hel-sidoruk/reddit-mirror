@@ -8,3 +8,8 @@ export * from './DefaultIcon';
 export * from './IconUp';
 export * from './IconDown';
 export * from './CloseIcon';
+export * from './Hot';
+export * from './New';
+export * from './Best';
+export * from './Top';
+export * from './Long';
