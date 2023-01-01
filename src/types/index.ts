@@ -24,9 +24,3 @@ export enum EIcons {
   long = 'long',
   hot = 'hot',
 }
-
-export interface IComment {
-  body: string;
-  author: string;
-  replies: { data: { children: { data: IComment }[] } } | '';
-}

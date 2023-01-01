@@ -1,66 +1,52 @@
-import React from 'react';
-import { createPortal } from 'react-dom';
-import { Colors, EIcons, IComment } from '../types';
+import React, { useEffect } from 'react';
+import { EIcons } from '../types';
 import { CommentForm } from './CommentForm';
 import { Text } from './UI/Text';
 import { IconButton } from './UI/IconButton';
 import { CommentsBlock } from './CommentsBlock';
 import { PostData } from '../types/posts';
 import { DefaultIcon } from './Icons';
+import { useActions } from '../hooks/useActions';
 
-interface PostProps {
-  onClose?: () => void;
-  post: PostData;
-  comments: { data: IComment }[];
-}
+export const Post = ({ post }: { post: PostData }) => {
+  const { fetchComments } = useActions();
+  useEffect(() => {
+    fetchComments(post.id);
+  }, []);
 
-export const Post = ({ onClose, post, comments }: PostProps) => {
-  return createPortal(
-    <div className="modal" onClick={onClose}>
-      <div className="modal__header">
-        <Text As="p" size={20} color={Colors.white}>
+  return (
+    <div className="post" onClick={(e) => e.stopPropagation()}>
+      <div className="post__content">
+        <div className="metaData">
+          <div className="userLink">
+            {post.avatar ? (
+              <img src={post.avatar} className="avatar" alt="avatar" />
+            ) : (
+              <DefaultIcon fill="#CC6633" className="avatar" />
+            )}
+            <a href="#user-url" className="username">
+              {post.author}
+            </a>
+          </div>
+          <span className="createdAt">{post.created}</span>
+        </div>
+        <Text As="h1" size={28}>
           {post.title}
         </Text>
-        <IconButton color={Colors.white} icon={EIcons.close}>
-          Close
-        </IconButton>
-      </div>
-      <div className="modal__content">
-        <div className="post" onClick={(e) => e.stopPropagation()}>
-          <div className="post__content">
-            <div className="metaData">
-              <div className="userLink">
-                {post.avatar ? (
-                  <img src={post.avatar} className="avatar" alt="avatar" />
-                ) : (
-                  <DefaultIcon fill="#CC6633" className="avatar" />
-                )}
-                <a href="#user-url" className="username">
-                  {post.author}
-                </a>
-              </div>
-              <span className="createdAt">{post.created}</span>
-            </div>
-            <Text As="h1" size={28}>
-              {post.title}
-            </Text>
-            <Text As="p" size={20}>
-              {post.selftext}
-            </Text>
-            {post.url && <img className="post__image" src={post.url} alt="Post image" />}
-            <div className="post__btns">
-              <IconButton icon={EIcons.comments}>{post.num_comments} comments</IconButton>
-              <IconButton icon={EIcons.share}>Share</IconButton>
-              <IconButton icon={EIcons.block}>Hide</IconButton>
-              <IconButton icon={EIcons.save}>Save</IconButton>
-              <IconButton icon={EIcons.warning}>Report</IconButton>
-            </div>
-            <CommentForm />
-            <CommentsBlock comments={comments} />
-          </div>
+        <Text As="p" size={20}>
+          {post.selftext}
+        </Text>
+        {post.url && <img className="post__image" src={post.url} alt="Post image" />}
+        <div className="post__btns">
+          <IconButton icon={EIcons.comments}>{post.num_comments} comments</IconButton>
+          <IconButton icon={EIcons.share}>Share</IconButton>
+          <IconButton icon={EIcons.block}>Hide</IconButton>
+          <IconButton icon={EIcons.save}>Save</IconButton>
+          <IconButton icon={EIcons.warning}>Report</IconButton>
         </div>
+        <CommentForm />
+        <CommentsBlock />
       </div>
-    </div>,
-    document.getElementById('modal-root') as HTMLElement
+    </div>
   );
 };

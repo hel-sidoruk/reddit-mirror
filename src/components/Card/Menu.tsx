@@ -1,11 +1,12 @@
 import React from 'react';
 import { Colors } from '../../types';
+import { PostData } from '../../types/posts';
 import { Dropdown } from '../Dropdown';
 import { MenuIcon } from '../Icons';
 import { Text } from '../UI/Text';
 import { MenuItemsList } from './MenuItemsList';
 
-export function Menu({ postId }: { postId: string }) {
+export function Menu({ post }: { post: PostData }) {
   return (
     <div className="menu">
       <Dropdown
@@ -16,7 +17,7 @@ export function Menu({ postId }: { postId: string }) {
         }
       >
         <ul className="dropdown">
-          <MenuItemsList postId={postId} />
+          <MenuItemsList post={post} />
           <button className="closeButton">
             <Text size={14} mobileSize={12} color={Colors.grey66}>
               Закрыть

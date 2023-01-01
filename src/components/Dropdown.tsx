@@ -24,13 +24,12 @@ export function Dropdown({ button, children }: IDropdownProps) {
       >
         {button}
       </div>
-      {isDropdownOpen && (
-        <div className="listContainer">
-          <div className="list" onClick={() => setIsDropdownOpen(false)}>
-            {children}
-          </div>
-        </div>
-      )}
+      <div
+        className={`list ${isDropdownOpen ? 'opened' : ''}`}
+        onClick={() => setIsDropdownOpen(false)}
+      >
+        {children}
+      </div>
     </div>
   );
 }

@@ -10,7 +10,7 @@ export function Card({ post }: { post: PostData }) {
     <li className="card">
       <TextContent post={post} />
       <Preview previewSrc={post.url} />
-      <Menu postId={post.id} />
+      <Menu post={post} />
       <Controls score={post.score} />
     </li>
   );

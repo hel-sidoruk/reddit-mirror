@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { Colors, EIcons, IComment } from '../types';
+import { Colors, EIcons } from '../types';
 import { DefaultIcon } from './Icons';
 import { IconButton } from './UI/IconButton';
 import { Text } from './UI/Text';
 import { nanoid } from 'nanoid';
 import { KarmaCounter } from './Card/KarmaCounter';
 import { CommentForm } from './CommentForm';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { IComment } from '../types/comments';
 
-export const Comment = ({ comment }: { comment: IComment; reply?: boolean }) => {
+dayjs.extend(relativeTime);
+
+export const Comment = ({ comment }: { comment: IComment }) => {
   const [isFormOpen, setisFormOpen] = useState(false);
 
   return (
@@ -18,6 +23,9 @@ export const Comment = ({ comment }: { comment: IComment; reply?: boolean }) => 
           <DefaultIcon className="comment__avatar" fill="#cc6633" />
           <Text size={14} color={Colors.orange}>
             {comment.author}
+          </Text>
+          <Text size={14} color={Colors.grey99}>
+            {dayjs(comment.created * 1000).fromNow()}
           </Text>
         </div>
         <Text As="p" size={14}>
