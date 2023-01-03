@@ -14,7 +14,7 @@ export function CardsList() {
 
   const { fetchPosts } = useActions();
   useEffect(() => {
-    fetchPosts(token);
+    fetchPosts();
   }, [token]);
 
   if (error) return <ErrorMessage error={error} />;

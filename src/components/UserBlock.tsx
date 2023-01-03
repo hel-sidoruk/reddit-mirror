@@ -12,7 +12,7 @@ export function UserBlock() {
   const { user } = useSelector<RootState, UserState>((state) => state.user);
   const { fetchUser } = useActions();
   useEffect(() => {
-    fetchUser(token);
+    fetchUser();
   }, [token]);
 
   return (

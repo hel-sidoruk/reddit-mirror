@@ -4,6 +4,7 @@ import { PostsAction, PostsActionTypes } from '../../types/posts';
 import { isImage } from '../../utils/isImage';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { ThunkActionType } from '../../types';
 
 interface PostApi {
   author: string;
@@ -18,8 +19,9 @@ interface PostApi {
 }
 dayjs.extend(relativeTime);
 
-export const fetchPosts = (token: string, option = 'best') => {
-  return async (dispatch: Dispatch<PostsAction>) => {
+export const fetchPosts = (option = 'best'): ThunkActionType => {
+  return async (dispatch: Dispatch<PostsAction>, getState) => {
+    const { token } = getState().token;
     if (token) {
       try {
         dispatch({ type: PostsActionTypes.FETCH_POSTS });

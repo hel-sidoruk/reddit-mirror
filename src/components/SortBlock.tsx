@@ -13,7 +13,7 @@ export function SortBlock() {
   const { fetchPosts } = useActions();
 
   return (
-    <div className="sortBlock">
+    <div className={`sortBlock ${token ? '' : 'disabled'}`}>
       <Dropdown
         button={
           <div className="sort-dropdown__top">
@@ -29,7 +29,7 @@ export function SortBlock() {
             <IconButton
               handleClick={() => {
                 setSortOption('Best');
-                fetchPosts(token, 'best');
+                fetchPosts('best');
               }}
               icon={EIcons.best}
               size={20}
@@ -41,7 +41,7 @@ export function SortBlock() {
             <IconButton
               handleClick={() => {
                 setSortOption('Hot');
-                fetchPosts(token, 'hot');
+                fetchPosts('hot');
               }}
               icon={EIcons.hot}
               size={20}
@@ -53,7 +53,7 @@ export function SortBlock() {
             <IconButton
               handleClick={() => {
                 setSortOption('New');
-                fetchPosts(token, 'new');
+                fetchPosts('new');
               }}
               icon={EIcons.new}
               size={20}
@@ -65,7 +65,7 @@ export function SortBlock() {
             <IconButton
               handleClick={() => {
                 setSortOption('Top');
-                fetchPosts(token, 'top');
+                fetchPosts('top');
               }}
               icon={EIcons.top}
               size={20}
@@ -77,7 +77,7 @@ export function SortBlock() {
             <IconButton
               handleClick={() => {
                 setSortOption('Rising');
-                fetchPosts(token, 'rising');
+                fetchPosts('rising');
               }}
               icon={EIcons.long}
               size={20}

@@ -1,9 +1,11 @@
 import { UserAction, UserActionTypes } from '../../types/user';
 import { Dispatch } from 'redux';
 import axios from 'axios';
+import { ThunkActionType } from '../../types';
 
-export const fetchUser = (token: string) => {
-  return async (dispatch: Dispatch<UserAction>) => {
+export const fetchUser = (): ThunkActionType => {
+  return async (dispatch: Dispatch<UserAction>, getState) => {
+    const { token } = getState().token;
     if (token) {
       try {
         dispatch({ type: UserActionTypes.FETCH_USER });

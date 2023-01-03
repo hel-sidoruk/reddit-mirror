@@ -1,8 +1,17 @@
-import { CommentAction, CommentActionsTypes, CommentState } from '../../types/comment';
-
 const initialState: CommentState = {
   commentText: 'Hello',
 };
+export interface CommentState {
+  commentText: string;
+}
+
+export enum CommentActionsTypes {
+  updateComment = 'updateComment',
+}
+export interface CommentAction {
+  type: CommentActionsTypes.updateComment;
+  text: string;
+}
 
 export const commentReducer = (state = initialState, action: CommentAction): CommentState => {
   switch (action.type) {

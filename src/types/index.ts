@@ -1,3 +1,7 @@
+import { Action } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { RootState } from '../store/reducers';
+
 export enum Colors {
   black = 'black',
   orange = 'orange',
@@ -24,3 +28,5 @@ export enum EIcons {
   long = 'long',
   hot = 'hot',
 }
+
+export type ThunkActionType = ThunkAction<void, RootState, unknown, Action<string>>;
