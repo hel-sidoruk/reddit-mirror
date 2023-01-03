@@ -14,7 +14,7 @@ export const PostModal = () => {
   return (
     <Modal
       title={`${id && postsById[id] ? postsById[id].title : ''}`}
-      onClose={() => navigate('/')}
+      onClose={() => navigate('/posts')}
     >
       {loading ? <div></div> : id && <Post post={postsById[id]} postId={id} />}
     </Modal>

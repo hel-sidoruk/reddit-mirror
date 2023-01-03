@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { PostData } from '../../types/posts';
 import { DefaultIcon } from '../Icons';
-import { CardTitle } from './CardTitle';
 
 export function TextContent({ post }: { post: PostData }) {
   return (
@@ -19,7 +19,9 @@ export function TextContent({ post }: { post: PostData }) {
         </div>
         <span className="createdAt">{post.created}</span>
       </div>
-      <CardTitle post={post} />
+      <Link to={`/posts/${post.id}`} className="postLink">
+        {post.title}
+      </Link>
     </div>
   );
 }

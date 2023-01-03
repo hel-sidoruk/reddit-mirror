@@ -15,7 +15,7 @@
 .card > * + * {
   padding: 13px 0 0;
 }
-.card:hover h2 button, .card:focus-within h2 button {
+.card:hover .postLink, .card:focus-within .postLink {
   color: var(--orange);
 }
 @media all and (min-width: 1024px) {

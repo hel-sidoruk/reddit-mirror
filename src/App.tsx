@@ -1,13 +1,10 @@
 import React from 'react';
-import { CardsList } from './components/CardsList';
-import { Content } from './components/Content';
-import { Header } from './components/Header';
 import { Layout } from './components/Layout';
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PostModal } from './components/PostModal';
-import { Auth } from './components/Auth';
+import { BrowserRouter } from 'react-router-dom';
+import { AppRouter } from './router/AppRouter';
+import { Header } from './components/Header';
 
 function App() {
   return (
@@ -15,13 +12,7 @@ function App() {
       <BrowserRouter>
         <Layout>
           <Header />
-          <Content>
-            <CardsList />
-            <Routes>
-              <Route path="/posts/:id" element={<PostModal />} />
-              <Route path="/auth" element={<Auth />} />
-            </Routes>
-          </Content>
+          <AppRouter />
         </Layout>
       </BrowserRouter>
     </Provider>
