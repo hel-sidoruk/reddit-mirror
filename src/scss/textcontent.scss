@@ -18,19 +18,10 @@
 .createdAt, .createdAt span {
   color: var(--grey99);
 }
-.title {
+.postLink {
   font-size: 16px;
   line-height: 19px;
-  font-weight: normal;
-  margin: 0;
-}
-
-.postLink {
-  overflow: hidden;
   font-size: inherit;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
   text-align: unset;
 }
 
@@ -83,14 +74,10 @@
     flex: 0 0;
   }
 
-  .title {
+  .postLink {
     padding:     0 0 10px 0;
     font-size:   20px;
     line-height: 23px;
-  }
-
-  .postLink {
-    -webkit-line-clamp: 1;
   }
 }
 

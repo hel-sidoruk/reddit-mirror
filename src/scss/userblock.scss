@@ -3,6 +3,9 @@
   align-items: center;
   position: relative;
   cursor: pointer;
+  &.disabled {
+    pointer-events: none;
+  }
 }
 
 .userBox:hover span {

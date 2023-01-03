@@ -6,7 +6,7 @@ import { Text } from './Text';
 
 interface ModalProps {
   title: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   onClose: () => void;
 }
 

@@ -4,6 +4,9 @@
     font-size: 20px;
     line-height: 23px;
     margin: 0 0 15px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
   }
 
   @media all and (min-width: 1024px) {

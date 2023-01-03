@@ -14,3 +14,5 @@ export * from './Best';
 export * from './Top';
 export * from './Long';
 export * from './MessageIcon';
+export * from './RedditIcon';
+export * from './RedditText';

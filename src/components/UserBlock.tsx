@@ -16,7 +16,7 @@ export function UserBlock() {
   }, [token]);
 
   return (
-    <div className="userBox">
+    <div className={`userBox ${token ? 'disabled' : ''}`}>
       <a
         className="link"
         href="https://www.reddit.com/api/v1/authorize?client_id=bxH8_B34kH4q7m4OaAmBBA&response_type=token&state=random_string&redirect_uri=http://localhost:3000/auth&scope=read submit identity"

@@ -8,12 +8,13 @@ import { PostData } from '../types/posts';
 import { DefaultIcon } from './Icons';
 import { useActions } from '../hooks/useActions';
 
-export const Post = ({ post }: { post: PostData }) => {
+export const Post = ({ post, postId }: { post: PostData; postId: string }) => {
   const { fetchComments } = useActions();
   useEffect(() => {
-    fetchComments(post.id);
+    fetchComments(postId);
   }, []);
 
+  if (!post) return <div></div>;
   return (
     <div className="post" onClick={(e) => e.stopPropagation()}>
       <div className="post__content">

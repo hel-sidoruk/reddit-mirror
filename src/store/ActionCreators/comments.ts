@@ -1,8 +1,9 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { CommentsAction, CommentsActionTypes, IComment } from '../../types/comments';
+import { ThunkActionType } from '../../types';
 
-export const fetchComments = (id: string) => {
+export const fetchComments = (id: string): ThunkActionType => {
   return async (dispatch: Dispatch<CommentsAction>) => {
     try {
       dispatch({ type: CommentsActionTypes.FETCH_COMMENTS });

@@ -9,9 +9,12 @@ export interface PostData {
   url: string;
   created: string;
 }
-
+export interface PostsById {
+  [key: string]: PostData;
+}
 export interface PostsState {
   posts: PostData[];
+  postsById: PostsById;
   loading: boolean;
   error: null | string;
 }
@@ -26,7 +29,7 @@ interface FetchPostsAction {
 }
 interface FetchPostsSuccessAction {
   type: PostsActionTypes.FETCH_POSTS_SUCCESS;
-  payload: PostData[];
+  payload: { posts: PostData[]; postsById: PostsById };
 }
 interface FetchPostsErrorAction {
   type: PostsActionTypes.FETCH_POSTS_ERROR;

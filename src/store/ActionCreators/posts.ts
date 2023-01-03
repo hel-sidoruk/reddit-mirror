@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { PostsAction, PostsActionTypes } from '../../types/posts';
+import { PostData, PostsAction, PostsActionTypes, PostsById } from '../../types/posts';
 import { isImage } from '../../utils/isImage';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -31,7 +31,7 @@ export const fetchPosts = (option = 'best'): ThunkActionType => {
           },
         });
         const posts = data.data.children;
-        const postData = posts.map(({ data }: { data: PostApi }) => ({
+        const postData: PostData[] = posts.map(({ data }: { data: PostApi }) => ({
           author: data.author,
           title: data.title,
           id: data.id,
@@ -42,9 +42,13 @@ export const fetchPosts = (option = 'best'): ThunkActionType => {
           url: isImage(data.url) ? data.url : '',
           created: `Posted ${dayjs(data.created * 1000).fromNow()}`,
         }));
+        const postsById: PostsById = {};
+        postData.forEach((post) => {
+          postsById[post.id] = post;
+        });
         dispatch({
           type: PostsActionTypes.FETCH_POSTS_SUCCESS,
-          payload: postData,
+          payload: { posts: postData, postsById },
         });
       } catch (err) {
         dispatch({
