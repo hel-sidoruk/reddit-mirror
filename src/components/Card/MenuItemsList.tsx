@@ -8,7 +8,7 @@ export function MenuItemsList({ post }: { post: PostData }) {
   return (
     <ul className="menuItemsList">
       <li className="menuItem hideMobile">
-        <Link to={`posts/${post.id}`}>
+        <Link to={`/posts/${post.id}`}>
           <IconButton icon={EIcons.comments} size={12}>
             Comments
           </IconButton>

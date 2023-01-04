@@ -18,4 +18,34 @@
       fill: var(--orange);
     }
   }
+} 
+.back-btn {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 20px;
+  line-height: 24px;
+  background-color: #cc6633;
+  transition: all .3s ease-in-out;
+  &:hover {
+    filter: brightness(1.15);
+    transform: scale(1.04);
+  }
+}
+.load-btn {
+  border: 2px solid #cc6633;
+  padding: 14px 26px;
+  font-size: 28px;
+  color: #cc6633;
+  transition: all .3s ease-in-out;
+  &:hover {
+    background-color: #cc6633;
+    color: #fff;
+  }
+  &.hidden {
+    display: none;
+  }
 }

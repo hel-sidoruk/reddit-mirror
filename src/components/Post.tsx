@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { EIcons } from '../types';
 import { CommentForm } from './CommentForm';
-import { Text } from './UI/Text';
 import { IconButton } from './UI/IconButton';
 import { CommentsBlock } from './CommentsBlock';
 import { PostData } from '../types/posts';
@@ -14,32 +13,39 @@ export const Post = ({ post, postId }: { post: PostData; postId: string }) => {
     fetchComments(postId);
   }, []);
 
-  if (!post) return <div></div>;
   return (
     <div className="post" onClick={(e) => e.stopPropagation()}>
       <div className="post__content">
         <div className="metaData">
           <div className="userLink">
-            {post.avatar ? (
+            {post && post.avatar ? (
               <img src={post.avatar} className="avatar" alt="avatar" />
             ) : (
-              <DefaultIcon fill="#CC6633" className="avatar" />
+              <DefaultIcon
+                fill={`${post ? '#CC6633' : '#ddd'}`}
+                className={`avatar ${post ? '' : 'skelet'}`}
+              />
             )}
-            <a href="#user-url" className="username">
-              {post.author}
+            <a href="#" className="username">
+              {post && post.author}
             </a>
           </div>
-          <span className="createdAt">{post.created}</span>
+          <span className={`createdAt ${!post ? 'skelet' : ''}`}>{post ? post.created : ' '}</span>
         </div>
-        <Text As="h1" size={28}>
-          {post.title}
-        </Text>
-        <Text As="p" size={20}>
-          {post.selftext}
-        </Text>
-        {post.url && <img className="post__image" src={post.url} alt="Post image" />}
+        <h1 className={`post__title ${!post ? 'skelet' : ''}`}>{post ? post.title : ' '}</h1>
+        <p className={`post__text ${!post ? 'skelet' : ''}`}>{post ? post.selftext : ' '}</p>
+        {post && post.url && (
+          <div className="post__asset-box">
+            <img className="post__asset" src={post.url} alt="Post image" />
+          </div>
+        )}
+        {post && post.video && (
+          <div className="post__asset-box">
+            <video className="post__asset" src={post.video} controls />
+          </div>
+        )}
         <div className="post__btns">
-          <IconButton icon={EIcons.comments}>{post.num_comments} comments</IconButton>
+          <IconButton icon={EIcons.comments}>{post && post.num_comments} comments</IconButton>
           <IconButton icon={EIcons.share}>Share</IconButton>
           <IconButton icon={EIcons.block}>Hide</IconButton>
           <IconButton icon={EIcons.save}>Save</IconButton>

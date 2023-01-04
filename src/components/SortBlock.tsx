@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 import { useActions } from '../hooks/useActions';
 import { RootState } from '../store/reducers';
 import { Colors, EIcons } from '../types';
@@ -11,6 +12,18 @@ export function SortBlock() {
   const [sortOption, setSortOption] = useState('Best');
   const token = useSelector<RootState, string>((state) => state.token.token);
   const { fetchPosts } = useActions();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  function sortByOption(option: string) {
+    setSortOption(option);
+    fetchPosts(option);
+    setSearchParams(`sort=${option}`);
+  }
+
+  useEffect(() => {
+    const option = searchParams.get('sort');
+    option ? sortByOption(option) : fetchPosts();
+  }, [token]);
 
   return (
     <div className={`sortBlock ${token ? '' : 'disabled'}`}>
@@ -26,62 +39,27 @@ export function SortBlock() {
       >
         <ul className="sort-dropdown dropdown">
           <li className="menuItem">
-            <IconButton
-              handleClick={() => {
-                setSortOption('Best');
-                fetchPosts('best');
-              }}
-              icon={EIcons.best}
-              size={20}
-            >
+            <IconButton handleClick={() => sortByOption('best')} icon={EIcons.best} size={20}>
               Best
             </IconButton>
           </li>
           <li className="menuItem">
-            <IconButton
-              handleClick={() => {
-                setSortOption('Hot');
-                fetchPosts('hot');
-              }}
-              icon={EIcons.hot}
-              size={20}
-            >
+            <IconButton handleClick={() => sortByOption('hot')} icon={EIcons.hot} size={20}>
               Hot
             </IconButton>
           </li>
           <li className="menuItem">
-            <IconButton
-              handleClick={() => {
-                setSortOption('New');
-                fetchPosts('new');
-              }}
-              icon={EIcons.new}
-              size={20}
-            >
+            <IconButton handleClick={() => sortByOption('new')} icon={EIcons.new} size={20}>
               New
             </IconButton>
           </li>
           <li className="menuItem">
-            <IconButton
-              handleClick={() => {
-                setSortOption('Top');
-                fetchPosts('top');
-              }}
-              icon={EIcons.top}
-              size={20}
-            >
+            <IconButton handleClick={() => sortByOption('top')} icon={EIcons.top} size={20}>
               Top
             </IconButton>
           </li>
           <li className="menuItem">
-            <IconButton
-              handleClick={() => {
-                setSortOption('Rising');
-                fetchPosts('rising');
-              }}
-              icon={EIcons.long}
-              size={20}
-            >
+            <IconButton handleClick={() => sortByOption('rising')} icon={EIcons.long} size={20}>
               Rising
             </IconButton>
           </li>

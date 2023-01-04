@@ -8,15 +8,15 @@ import { Post } from './Post';
 
 export const PostModal = () => {
   const { id } = useParams();
-  const { postsById, loading } = useSelector<RootState, PostsState>((state) => state.posts);
+  const { postsById, option } = useSelector<RootState, PostsState>((state) => state.posts);
   const navigate = useNavigate();
 
   return (
     <Modal
       title={`${id && postsById[id] ? postsById[id].title : ''}`}
-      onClose={() => navigate('/posts')}
+      onClose={() => navigate(`/posts?sort=${option}`)}
     >
-      {loading ? <div></div> : id && <Post post={postsById[id]} postId={id} />}
+      {id && <Post post={postsById[id]} postId={id} />}
     </Modal>
   );
 };

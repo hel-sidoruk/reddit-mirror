@@ -25,5 +25,10 @@
     display: flex;
     align-items: center;
     gap: 5px;
+    span {
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
   }
 }

@@ -1,31 +1,55 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { RootState } from '../store/reducers';
-import { Card } from './Card/Card';
 import { NotAuthorized } from './UI/NotAuthorized';
-import { SkeletonPost } from './UI/SkeletonPost';
 import { useSelector } from 'react-redux';
-import { useActions } from '../hooks/useActions';
 import { PostsState } from '../types/posts';
 import { ErrorMessage } from './UI/ErrorMessage';
+import { useActions } from '../hooks/useActions';
+import { BackToTopButton } from './UI/BackToTopButton';
+import { Loader } from './UI/Loader';
+import { Text } from './UI/Text';
+import { Colors } from '../types';
+import { useBackToTopBtn } from '../hooks/useBackToTopBtn';
+import { CardsElements } from './CardsElements';
 
 export function CardsList() {
+  const [isBackBtnShown] = useBackToTopBtn();
   const token = useSelector<RootState, string>((state) => state.token.token);
-  const { posts, loading, error } = useSelector<RootState, PostsState>((state) => state.posts);
+  const { error, loadingNext, loadCount } = useSelector<RootState, PostsState>(
+    (state) => state.posts
+  );
 
-  const { fetchPosts } = useActions();
-  useEffect(() => {
-    fetchPosts();
-  }, [token]);
+  const { fetchNextPosts } = useActions();
 
   if (error) return <ErrorMessage error={error} />;
   return token ? (
-    <ul className="cardsList">
-      {loading
-        ? Array(10)
-            .fill(0)
-            .map((_, i) => <SkeletonPost key={i} />)
-        : posts.map((post) => <Card key={post.id} post={post} />)}
-    </ul>
+    <>
+      <ul className="cardsList">
+        <CardsElements />
+        {loadingNext && (
+          <div className="centered">
+            <Text size={28} color={Colors.orange}>
+              Loading...
+            </Text>
+            <Loader />
+          </div>
+        )}
+        {loadCount === 3 && (
+          <div className="centered">
+            <button
+              className="load-btn"
+              onClick={(e) => {
+                fetchNextPosts();
+                (e.target as HTMLButtonElement).classList.add('hidden');
+              }}
+            >
+              Load more
+            </button>
+          </div>
+        )}
+      </ul>
+      {isBackBtnShown && <BackToTopButton />}
+    </>
   ) : (
     <NotAuthorized />
   );
