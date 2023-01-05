@@ -6,7 +6,7 @@ interface TokenState {
 const initialState: TokenState = {
   token: '',
 };
-interface TokenAction {
+export interface TokenAction {
   type: 'updateToken';
   token: string;
 }

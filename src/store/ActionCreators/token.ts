@@ -1,5 +1,5 @@
-import { ActionCreator, AnyAction } from 'redux';
-import { UPDATE_TOKEN } from '../reducers/tokenReducer';
+import { ActionCreator } from 'redux';
+import { TokenAction, UPDATE_TOKEN } from '../reducers/tokenReducer';
 
 interface TokenInfo {
   token: string;
@@ -8,7 +8,7 @@ interface TokenInfo {
 
 const timeToExpiration = 86400 * 1000;
 
-export const updateToken: ActionCreator<AnyAction> = () => {
+export const updateToken: ActionCreator<TokenAction> = () => {
   const tokenInfoStorage = localStorage.getItem('tokenInfo') || '';
   if (tokenInfoStorage) {
     const tokenInfo: TokenInfo = JSON.parse(tokenInfoStorage);
