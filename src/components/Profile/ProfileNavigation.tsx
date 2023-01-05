@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const links = ['history', 'posts', 'saved', 'upvoted', 'downvoted', 'hidden'];
+const links = ['history', 'saved', 'upvoted', 'downvoted', 'hidden'];
 
 export const ProfileNavigation = () => {
   return (

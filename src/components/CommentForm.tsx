@@ -1,29 +1,33 @@
-import React, { ChangeEvent, FormEvent, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { SubmitHandler } from 'react-hook-form/dist/types';
 import { useSelector } from 'react-redux';
 import { useActions } from '../hooks/useActions';
 import { RootState } from '../store/reducers';
 
+type CommentInput = {
+  comment: string;
+};
+
 export const CommentForm = ({ text }: { text?: string }) => {
   const comment = useSelector<RootState, string>((state) => state.comment.commentText);
   const { updateComment } = useActions();
+  const { handleSubmit, register, setFocus, setValue, watch } = useForm<CommentInput>();
+  const onSubmit: SubmitHandler<CommentInput> = (data) => console.log(data);
 
-  const ref = useRef<HTMLTextAreaElement>(null);
   useEffect(() => {
     if (text) {
+      setValue('comment', text);
       updateComment(text);
-      ref.current?.focus();
+      setFocus('comment');
     }
-  }, [text, updateComment]);
-  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    updateComment(e.target.value);
-  };
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    console.log(comment);
-  };
+    const subscription = watch(({ comment }) => updateComment(comment));
+    return () => subscription.unsubscribe();
+  }, [text, setFocus, watch]);
+
   return (
-    <form className="comment-form" onSubmit={handleSubmit}>
-      <textarea ref={ref} className="comment-form__input" value={comment} onChange={handleChange} />
+    <form className="comment-form" onSubmit={handleSubmit(onSubmit)}>
+      <textarea {...register('comment')} defaultValue={comment} className="comment-form__input" />
       <button type="submit" className="comment-form__btn">
         Comment
       </button>

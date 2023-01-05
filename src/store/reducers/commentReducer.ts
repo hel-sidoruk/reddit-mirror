@@ -1,5 +1,5 @@
 const initialState: CommentState = {
-  commentText: 'Hello',
+  commentText: '',
 };
 export interface CommentState {
   commentText: string;

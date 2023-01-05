@@ -32,7 +32,9 @@ export function KarmaCounter({ score, postID }: { score: number; postID: string 
       <button onClick={upvote} className={`up ${isUpvoted ? 'upvoted' : ''}`}>
         <IconUp />
       </button>
-      <span className={`karmaValue ${isDownVoted ? 'downvoted' : ''}`}>{score}</span>
+      <span className={`karmaValue ${isDownVoted ? 'downvoted' : ''}`}>
+        {isUpvoted ? score + 1 : isDownVoted ? score - 1 : score}
+      </span>
       <button onClick={downvote} className={`down ${isDownVoted ? 'downvoted' : ''}`}>
         <IconDown />
       </button>
