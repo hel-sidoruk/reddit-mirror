@@ -24,6 +24,9 @@
   font-size: inherit;
   text-align: unset;
   transition: all .3s ease-in-out;
+  &.visited {
+    color: #999;
+  }
 }
 
 .postLink::after {

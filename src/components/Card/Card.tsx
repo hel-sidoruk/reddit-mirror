@@ -11,7 +11,7 @@ export function Card({ post }: { post: PostData }) {
       <TextContent post={post} />
       <Preview previewSrc={post.url} />
       <Menu post={post} />
-      <Controls score={post.score} />
+      <Controls score={post.score} postID={post.id} />
     </li>
   );
 }

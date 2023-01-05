@@ -19,24 +19,4 @@
     line-height: 32px;
     margin-bottom: 25px;
   }
-  &__link {
-    color: var(--orange);
-    font-size: 42px;
-    line-height: 56px;
-    position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      width: 100%;
-      bottom: -2px;
-      height: 3px;
-      background-color: var(--orange);
-      transition: all .3s ease-in-out;
-      transform: scale(0);
-    }
-    &:hover::after {
-      transform: scale(1);
-    }
-  }
 }

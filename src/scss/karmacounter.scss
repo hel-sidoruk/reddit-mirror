@@ -12,6 +12,22 @@
 .down {
   font-size: 0;
 }
+.up.upvoted {
+  svg path {
+    fill: var(--green);
+  }
+  & + .karmaValue {
+    color: var(--green);
+  }
+}
+.down.downvoted {
+  svg path {
+    fill: var(--orange);
+  }
+}
+.karmaValue.downvoted {
+  color: var(--orange);
+}
 
 @media all and (min-width: 1024px) {
   .karmaCounter {

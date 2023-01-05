@@ -4,10 +4,10 @@ import { KarmaCounter } from './KarmaCounter';
 import { SaveButton } from './SaveButton';
 import { ShareButton } from './ShareButton';
 
-export function Controls({ score }: { score: number | undefined }) {
+export function Controls({ score, postID }: { score: number | undefined; postID: string }) {
   return (
     <div className="controls">
-      <KarmaCounter score={score || 0} />
+      <KarmaCounter postID={postID} score={score || 0} />
       <CommentButton />
       <div className="actions">
         <ShareButton />

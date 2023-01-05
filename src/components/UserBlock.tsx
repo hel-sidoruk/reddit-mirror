@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { useActions } from '../hooks/useActions';
 import { RootState } from '../store/reducers';
 import { UserState } from '../types/user';
+import { Link } from 'react-router-dom';
 
 export function UserBlock() {
   const token = useSelector<RootState, string>((state) => state.token.token);
@@ -16,11 +17,15 @@ export function UserBlock() {
   }, [token]);
 
   return (
-    <div className={`userBox ${token ? 'disabled' : ''}`}>
-      <a
-        className="link"
-        href="https://www.reddit.com/api/v1/authorize?client_id=bxH8_B34kH4q7m4OaAmBBA&response_type=token&state=random_string&redirect_uri=http://localhost:3000/auth&scope=read submit identity"
-      ></a>
+    <div className="userBox">
+      {token ? (
+        <Link className="link" to={'/profile/history'}></Link>
+      ) : (
+        <a
+          className="link"
+          href="https://www.reddit.com/api/v1/authorize?client_id=bxH8_B34kH4q7m4OaAmBBA&response_type=token&state=random_string&redirect_uri=http://localhost:3000/auth&scope=read submit identity"
+        ></a>
+      )}
       <div className="avatarBox">
         {user.avatar ? (
           <img src={user.avatar} alt="user avatar" className="avatarImage" />

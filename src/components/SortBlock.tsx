@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useActions } from '../hooks/useActions';
 import { RootState } from '../store/reducers';
 import { Colors, EIcons } from '../types';
@@ -11,8 +11,9 @@ import { IconButton } from './UI/IconButton';
 export function SortBlock() {
   const [sortOption, setSortOption] = useState('Best');
   const token = useSelector<RootState, string>((state) => state.token.token);
-  const { fetchPosts } = useActions();
+  const { fetchPosts, getVisitedPosts, getSavedPosts, getVotedPosts } = useActions();
   const [searchParams, setSearchParams] = useSearchParams();
+  const { pathname } = useLocation();
 
   function sortByOption(option: string) {
     setSortOption(option);
@@ -23,8 +24,12 @@ export function SortBlock() {
   useEffect(() => {
     const option = searchParams.get('sort');
     option ? sortByOption(option) : fetchPosts();
+    getVisitedPosts();
+    getSavedPosts();
+    getVotedPosts();
   }, [token]);
 
+  if (pathname.startsWith('/profile')) return;
   return (
     <div className={`sortBlock ${token ? '' : 'disabled'}`}>
       <Dropdown
